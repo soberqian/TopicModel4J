@@ -126,7 +126,7 @@ Running the LDAGibbsSamplingTest.java, we can obtain the result after some itera
 
 The outfile contains 'LDAGibbs_topic_word_50.txt' and 'LDAGibbs_doc_topic50.txt'. The content of 'LDAGibbs_topic_word_50.txt' likes: <br />
 ```java
-Topic:0
+Topic:1
 study :0.03364301916742469
 student :0.029233711281785802
 online :0.01600578762486915
@@ -138,7 +138,7 @@ examine :0.01029001814348541
 technology :0.00980009504508109
 ...
 
-Topic:1
+Topic:2
 fuzzy :0.07505158709641029
 method :0.031024330934552934
 decision :0.02585387024650563
@@ -270,6 +270,69 @@ Where the separator between sentences is '--'. <br />
 Running the LabeledLDATest.java, we can output two files (SentenceLDA_doc_topic50.txt and SentenceLDA_topic_word_50.txt). <br /> 
 
 ## BTM
+We use Collapsed Gibbs sampling for implementing the biterm topic model.<br /> 
+Reference:(1) Cheng X, Yan X, Lan Y, et al. Btm: Topic modeling over short texts[J]. IEEE Transactions on Knowledge and Data Engineering, 2014, 26(12): 2928-2941.<br /> 
+(2)Yan X, Guo J, Lan Y, et al. A biterm topic model for short texts[C]//Proceedings of the 22nd international conference on World Wide Web. ACM, 2013: 1445-1456.<br /> 
+The following code is to call the BTM algorithm for processing text:<br />
+```java
+import com.topic.model.BTM;
+
+public class BTMTest {
+
+	public static void main(String[] args) {
+		BTM btm = new BTM("data/shortdoc.txt", "gbk", 15, 0.1,
+				0.01, 1000, 30, 50, "data/ldaoutput/");
+		btm.MCMCSampling();
+	}
+}
+```
+
+Where the constructor method BTM() is:<br />
+```java
+public BTM(String inputFile, String inputFileCode, int topicNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords, int windowS,
+			String outputFileDir)
+```
+The input file ('rawdata_sentenceLDA') contains many document (5 documents), like: <br />
+
+```java
+iphone crack iphone 
+adding support iphone announced 
+youtube video guy siri pretty love 
+rim made easy switch iphone yeah 
+realized ios 
+```
+Running the BTMTest.java, we can output four files:<br />
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190608205429516.png#pic_center)
+
+The contents of 'BTM_topic_word_15.txt' like: <br /> 
+```java
+Topic:1
+love :0.06267534660746875
+market :0.04905619262931387
+nexus :0.04360853103805192
+share :0.03271320785552802
+video :0.02998937705989704
+wow :0.02998937705989704
+beautiful :0.02998937705989704
+shit :0.02998937705989704
+...
+
+Topic:2
+scream :0.05755999328746434
+android :0.05036799079423681
+shit :0.04557332246541846
+game :0.03838131997219093
+haven :0.03598398580778175
+talk :0.03118931747896339
+people :0.028791983314554216
+mango :0.026394649150145038
+job :0.02399731498573586
+nice :0.02399731498573586
+...
+```
+
+## PseudoDTM
 
 
 
