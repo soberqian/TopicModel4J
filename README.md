@@ -198,7 +198,8 @@ public class LabeledLDATest {
 	}
 }
 ```
-Where the constructor method LabeledLDA() is:
+
+Where the constructor method LabeledLDA() is:<br />
 ```java
 public LabeledLDA(String inputFile, String inputFileCode,
 			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
@@ -209,6 +210,7 @@ The input file ('rawdata_process_author') contains many document with labels, li
 457720--578743--643697--840908--874627--975162--1058302--1275106--1368496--1769120--1769130--2135000	paper present indoor navigation range strategy monocular camera exploit architectural orthogonality indoor environment introduce method estimate range vehicle state monocular camera visionbased SLAM navigation strategy assume indoor indoorlike manmade environment layout previously unknown gpsdenied representable energy base feature point straight architectural line experimentally validate propose algorithm fully selfcontained microaerial vehicle mav sophisticated onboard image processing slam capability building enable small aerial vehicle fly tight corridor significant technological challenge absence gps signal limited sense option experimental result show systemis limit capability camera environmental entropy
 273266--1065537--1120593--1474359--1976664--2135000	globalisation education increasingly topic discussion university worldwide hand industry university leader emphasise increase awareness influence global marketplace skill graduate time emergence tertiary education export market prompt university develop international recruitment strategy offer international student place undergraduate graduate degree programme article examine phenomenon globalisation emergence global intercultural collaboration delivery education effort global intercultural collaboration offer institution student learn successful approach
 ```
+
 Where the label and the document are segmented by '\t'. The label can be String character.
 Running the LabeledLDATest.java, we can output two files (LabeledLDA_topic_word.txt and LabeledLDA_doc_topic.txt). <br /> 
 The contents of 'LabeledLDA_topic_word.txt' like: <br /> 
@@ -222,7 +224,7 @@ speed :0.0053386779234139165
 year :0.0053386779234139165
 ...
 
-Topic:175
+Topic:2
 residual :0.017458207100978618
 lease :0.015278655652666681
 cash :0.015278655652666681
@@ -233,6 +235,41 @@ texas :0.00874000130773087
 buy :0.006560449859418931
 ...
 ```
+## Sentence LDA
+We use Collapsed Gibbs sampling for implementing the  Sentence-LDA.<br /> 
+Reference: (1)Jo Y, Oh A H. Aspect and sentiment unification model for online review analysis[C]//Proceedings of the fourth ACM international conference on Web search and data mining. ACM, 2011: 815-824.<br /> 
+(2) Büschken J, Allenby G M. Sentence-based text analysis for customer reviews[J]. Marketing Science, 2016, 35(6): 953-975.<br /> 
+
+The following code is to call the Sentence LDA algorithm for processing text:<br />
+```java
+import com.topic.model.SentenceLDA;
+
+public class SentenceLDATest {
+
+	public static void main(String[] args) {
+		SentenceLDA sentenceLda = new SentenceLDA("data/rawdata_sentenceLDA", "gbk", 50, 0.1,
+				0.01, 500, 50, "data/ldaoutput/");
+		sentenceLda.MCMCSampling();
+	}
+}
+```
+
+Where the constructor method LabeledLDA() is:<br />
+```java
+public SentenceLDA(String inputFile, String inputFileCode, int topicNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+The input file ('rawdata_sentenceLDA') contains many document, like: <br />
+
+```java
+fundamental step software design process selection refinement implementation data abstraction--step traditionally involve investigate expect performance system refinement abstraction select single alternative minimize performance cost metric--paper reformulate design step allow refinement datum abstraction computation--reformulation reflect fact implementation data abstraction dependent behavior exhibit object abstraction--behavior vary object computation single refinement inappropriate--framework present understanding represent variation behavior object potential multiple implementation--framework base static partitioning object disjoint implementation class static partitioning class implementation region dynamic partitioning class implementation region--framework analytic tool useful investigate expect performance multiple implementation describe detail
+preface front matter full preface advance design production computer hardware bring people direct contact computer--similar advance design production computer software require order increase contact rewarding--smalltalk-80 system result decade research create computer software produce highly functional interactive contact personal computer system--book detailed account smalltalk-80 system--divide major part Part overview concept syntax programming language--Part annotated illustrated specification system functionality--Part design implementation moderate-size application--Part specification smalltalk-80 virtual machine
+```
+Where the separator between sentences is '--'. <br />
+Running the LabeledLDATest.java, we can output two files (SentenceLDA_doc_topic50.txt and SentenceLDA_topic_word_50.txt). <br /> 
+
+## BTM
 
 
 
