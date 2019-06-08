@@ -332,8 +332,9 @@ nice :0.02399731498573586
 ...
 ```
 
-## PseudoDTM
-
+##  Pseudo-document-based Topic Model
+Collapsed Gibbs sampling in the generative model of Pseudo-document-based Topic Model<br /> 
+Reference:Zuo Y, Wu J, Zhang H, et al. Topic modeling of short texts: A pseudo-document view[C]//Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining. ACM, 2016: 2105-2114.<br /> 
 
 
 
