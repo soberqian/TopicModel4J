@@ -113,7 +113,7 @@ public class LDAGibbsSamplingTest {
 ```
 Where the constructor method GibbsSamplingLDA() is:
 ```java
-GibbsSamplingLDA(String inputFile, String inputFileCode, int topicNumber,
+public GibbsSamplingLDA(String inputFile, String inputFileCode, int topicNumber,
 			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
 			String outputFileDir)
 ```
@@ -156,6 +156,30 @@ risk :0.011752613824558436
 ```
 
 ##  Latent Dirichlet Allocation (Collapsed Variational Bayesian Inference)
+We also use Collapsed Variational Bayesian Inference (CVBI) for learning the parameters of LDA. <br />
+Reference: (1)Teh Y W, Newman D, Welling M. A collapsed variational Bayesian inference algorithm for latent Dirichlet allocation[C]//Advances in neural information processing systems. 2007: 1353-1360. <br />
+(2)Asuncion A, Welling M, Smyth P, et al. On smoothing and inference for topic models[C]//Proceedings of the twenty-fifth conference on uncertainty in artificial intelligence. AUAI Press, 2009: 27-34. <br />
+
+The following code is to call the algorithm for processing text:<br />
+```java
+import com.topic.model.CVBLDA;
+
+public class CVBLDATest {
+
+	public static void main(String[] args) {
+		CVBLDA cvblda = new CVBLDA("data/rawdata_process_lda", "gbk", 30, 0.1,
+				0.01, 200, 50, "data/ldaoutput/");
+		cvblda.CVBInference();
+	}
+}
+```
+Where the constructor method GibbsSamplingLDA() is:
+```java
+public CVBLDA(String inputFile, String inputFileCode, int topicNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+Running the CVBLDATest.java, we can obtain the result liking LDAGibbsSamplingTest.java. <br />
 
 
 
