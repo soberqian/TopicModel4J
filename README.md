@@ -104,7 +104,7 @@ import com.topic.model.GibbsSamplingLDA;
 public class LDAGibbsSamplingTest {
 
 	public static void main(String[] args) {
-		GibbsSamplingLDA lda = new GibbsSamplingLDA("data/rawdata_process_lda", "gbk", 30, 0.1,
+		GibbsSamplingLDA lda = new GibbsSamplingLDA("data/rawdata_process_lda", "gbk", 50, 0.1,
 				0.01, 500, 50, "data/ldaoutput/");
 		lda.MCMCSampling();
 
@@ -117,8 +117,41 @@ GibbsSamplingLDA(String inputFile, String inputFileCode, int topicNumber,
 			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
 			String outputFileDir)
 ```
+The input file ('rawdata_process_lda') contains many document, like: <br />
+![input file](https://img-blog.csdnimg.cn/2019060820040440.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9xaWFueWFuZy1oZnV0LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70#pic_center)
 
+Running the LDAGibbsSamplingTest.java, we can obtain the result after some iterations. <br />
+![Running](https://img-blog.csdnimg.cn/20190608200759730.png#pic_center)
+The outfile contains 'LDAGibbs_topic_word_50.txt' and 'LDAGibbs_doc_topic50.txt'. The content of 'LDAGibbs_topic_word_50.txt' likes: <br />
+```java
+Topic:0
+study :0.03364301916742469
+student :0.029233711281785802
+online :0.01600578762486915
+game :0.01502594142806051
+teacher :0.012739633635507014
+social :0.01192309513816648
+activity :0.010453325842953519
+examine :0.01029001814348541
+technology :0.00980009504508109
+...
 
+Topic:1
+fuzzy :0.07505158709641029
+method :0.031024330934552934
+decision :0.02585387024650563
+criterion :0.021780173946831995
+propose :0.021310132066100423
+base :0.017706477647158363
+number :0.016609713258784693
+problem :0.015982990751142595
+uncertainty :0.013632781347484729
+set :0.012692697586021583
+make :0.012536016959111058
+paper :0.012379336332200534
+risk :0.011752613824558436
+...
+```
 
 ##  Latent Dirichlet Allocation (Collapsed Variational Bayesian Inference)
 
