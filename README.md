@@ -8,6 +8,9 @@ Motivations：I develop this Java package to promote related research about Topi
 
 When submitting my research paper to a journal, I will publicly release all the source code.<br />
 
+# Jar Dependency
+If you want to use this package, you need download some Java jars: commons-math3-3.5.jar, lingpipe-4.1.0.jar, stanford-corenlp-3.9.1-models.jar, stanford-corenlp-3.9.1-sources.jar, stanford-corenlp-3.9.1.jar. The stanford-corenlp 3.9.1 can be download from this website: http://central.maven.org/maven2/edu/stanford/nlp/stanford-corenlp/3.9.1/.
+
 # Data Preprocessing for NLP
 This software can do the following text preprocessing:<br />
 * (1) Split the sentence to words.<br />
@@ -45,8 +48,16 @@ public class RawDataProcess {
 ```
 Running this code, we can obtain the following results:<br />
 ```java
-
+artificial intelligence phenomenon world today root start build year ago tree start grow long month ago beloved google assistant make call book haircut appointment Google IO event
 ```
+If we want deal a file which a line represent one document. For example,
+```java
+We present a new algorithm for domain adaptation improving upon a discrepancy minimization algorithm, (DM), previously shown to outperform a number of algorithms for this problem. 
+We investigated the feature map inside deep neural networks (DNNs) by tracking the transport map. We are interested in the role of depth--why do DNNs perform better than shallow models?
+```
+
+
+
 
 
 
