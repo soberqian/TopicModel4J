@@ -118,6 +118,7 @@ GibbsSamplingLDA(String inputFile, String inputFileCode, int topicNumber,
 			String outputFileDir)
 ```
 The input file ('rawdata_process_lda') contains many document, like: <br />
+
 ![input file](https://img-blog.csdnimg.cn/2019060820040440.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9xaWFueWFuZy1oZnV0LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70#pic_center)
 
 Running the LDAGibbsSamplingTest.java, we can obtain the result after some iterations. <br />
