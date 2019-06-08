@@ -181,7 +181,58 @@ public CVBLDA(String inputFile, String inputFileCode, int topicNumber,
 ```
 Running the CVBLDATest.java, we can obtain the result liking LDAGibbsSamplingTest.java. <br />
 
+## Labeled LDA
+We use gibbs sampling for implementing the Labeled LDA algorithm. <br />
+Reference:Ramage D, Hall D, Nallapati R, et al. Labeled LDA: A supervised topic model for credit attribution in multi-labeled corpora[C]//Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing: Volume 1-Volume 1. Association for Computational Linguistics, 2009: 248-256.<br />
 
+The following code is to call the Labeled LDA algorithm for processing text:<br />
+```java
+import com.topic.model.LabeledLDA;
+
+public class LabeledLDATest {
+
+	public static void main(String[] args) {
+		LabeledLDA llda = new LabeledLDA("data/rawdata_process_author", "gbk", 0.1,
+				0.01, 500, 50, "data/ldaoutput/");
+		llda.MCMCSampling();
+	}
+}
+```
+Where the constructor method LabeledLDA() is:
+```java
+public LabeledLDA(String inputFile, String inputFileCode,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+The input file ('rawdata_process_author') contains many document with labels, like: <br />
+```java
+457720--578743--643697--840908--874627--975162--1058302--1275106--1368496--1769120--1769130--2135000	paper present indoor navigation range strategy monocular camera exploit architectural orthogonality indoor environment introduce method estimate range vehicle state monocular camera visionbased SLAM navigation strategy assume indoor indoorlike manmade environment layout previously unknown gpsdenied representable energy base feature point straight architectural line experimentally validate propose algorithm fully selfcontained microaerial vehicle mav sophisticated onboard image processing slam capability building enable small aerial vehicle fly tight corridor significant technological challenge absence gps signal limited sense option experimental result show systemis limit capability camera environmental entropy
+273266--1065537--1120593--1474359--1976664--2135000	globalisation education increasingly topic discussion university worldwide hand industry university leader emphasise increase awareness influence global marketplace skill graduate time emergence tertiary education export market prompt university develop international recruitment strategy offer international student place undergraduate graduate degree programme article examine phenomenon globalisation emergence global intercultural collaboration delivery education effort global intercultural collaboration offer institution student learn successful approach
+```
+Where the label and the document are segmented by '\t'. The label can be String character.
+Running the LabeledLDATest.java, we can output two files (LabeledLDA_topic_word.txt and LabeledLDA_doc_topic.txt). <br /> 
+The contents of 'LabeledLDA_topic_word.txt' like: <br /> 
+```java
+Topic:1
+system :0.008885972224685621
+car :0.008885972224685621
+mf :0.007112325074049769
+stalk :0.0053386779234139165
+speed :0.0053386779234139165
+year :0.0053386779234139165
+...
+
+Topic:175
+residual :0.017458207100978618
+lease :0.015278655652666681
+cash :0.015278655652666681
+plan :0.013099104204354743
+car :0.010919552756042806
+price :0.00874000130773087
+texas :0.00874000130773087
+buy :0.006560449859418931
+...
+```
 
 
 
