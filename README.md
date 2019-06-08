@@ -55,6 +55,73 @@ If we want deal a file which a line represent one document. For example,
 We present a new algorithm for domain adaptation improving upon a discrepancy minimization algorithm, (DM), previously shown to outperform a number of algorithms for this problem. 
 We investigated the feature map inside deep neural networks (DNNs) by tracking the transport map. We are interested in the role of depth--why do DNNs perform better than shallow models?
 ```
+We denote this file as 'rawdata'. And we can use the next code to deal with:
+```java
+import java.io.IOException;
+import java.util.ArrayList;
+import com.topic.utils.FileUtil;
+
+public class RawDataProcessing {
+	/**
+	 * Functions:
+	 * 
+	 * (1) Split the sentence to words
+	 * (2) Lowercase the words and preform lemmatization
+	 * (3) Remove special characters (e.g., #, % and &), URLs and stop words
+	 * 
+	 * @author: Yang Qian
+	 */
+	public static void main(String[] args) throws IOException {
+		//read data
+		ArrayList<String> docLines = new ArrayList<String>();
+		FileUtil.readLines("data/rawdata", docLines, "gbk");
+		ArrayList<String> doclinesAfter = new ArrayList<String>();
+		for(String line : docLines){
+			//get all word for a document
+			ArrayList<String> words = new ArrayList<String>();
+			//lemmatization using StanfordCoreNLP
+			FileUtil.getlema(line, words);
+			//remove noise words
+			String text = FileUtil.RemoveNoiseWord(words);
+			doclinesAfter.add(text);
+		}
+		// write data
+		FileUtil.writeLines("data/rawdata_process", doclinesAfter, "gbk");
+	}
+}
+```
+
+# Algorithm for NLP
+The algorithms in this package contain **Latent Dirichlet Allocation (LDA), Biterm Topic Model (BTM),  Author-topic Model (ATM), Dirichlet Multinomial Mixture Model (DMM), Dual-Sparse Topic Model (DSTM), Labeled LDA, Link LDA, Sentence-LDA, Pseudo-document-based Topic Model (PTM), Hierarchical Dirichlet processes, Collaborative topic Model (CTM), Gaussian Lda and so on **. Now, I will intorduce how to use my package for running some algorithms.
+
+## Latent Dirichlet Allocation (Collapsed Gibbs sampling)
+Reference: (1) Griffiths T. Gibbs sampling in the generative model of latent dirichlet allocation[J]. 2002.<br />
+           (2) Heinrich G. Parameter estimation for text analysis[R]. Technical report, 2005.<br />
+The following code is to call the LDA algorithm for processing text:<br />
+```java
+import com.topic.model.GibbsSamplingLDA;
+
+public class LDAGibbsSamplingTest {
+
+	public static void main(String[] args) {
+		GibbsSamplingLDA lda = new GibbsSamplingLDA("data/rawdata_process_lda", "gbk", 30, 0.1,
+				0.01, 500, 50, "data/ldaoutput/");
+		lda.MCMCSampling();
+
+	}
+}
+```
+Where the constructor method GibbsSamplingLDA() is:
+```java
+GibbsSamplingLDA(String inputFile, String inputFileCode, int topicNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+
+
+
+##  Latent Dirichlet Allocation (Collapsed Variational Bayesian Inference)
+
 
 
 
