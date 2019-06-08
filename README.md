@@ -123,6 +123,7 @@ The input file ('rawdata_process_lda') contains many document, like: <br />
 
 Running the LDAGibbsSamplingTest.java, we can obtain the result after some iterations. <br />
 ![Running](https://img-blog.csdnimg.cn/20190608200759730.png#pic_center)
+
 The outfile contains 'LDAGibbs_topic_word_50.txt' and 'LDAGibbs_doc_topic50.txt'. The content of 'LDAGibbs_topic_word_50.txt' likes: <br />
 ```java
 Topic:0
