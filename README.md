@@ -336,6 +336,71 @@ nice :0.02399731498573586
 Collapsed Gibbs sampling in the generative model of Pseudo-document-based Topic Model<br /> 
 Reference:Zuo Y, Wu J, Zhang H, et al. Topic modeling of short texts: A pseudo-document view[C]//Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining. ACM, 2016: 2105-2114.<br /> 
 
+The following code is to call the PTM algorithm for processing text:<br />
+```java
+import com.topic.model.PseudoDTM;
+
+public class PTMTest {
+
+	public static void main(String[] args) {
+		PseudoDTM ptm = new PseudoDTM("data/shortDocument.txt", "gbk", 300, 50, 0.1, 0.1,
+				0.01, 500, 50, "data/ldaoutput/");
+		ptm.MCMCSampling();
+	}
+
+}
+```
+
+Where the constructor method PseudoDTM() is:<br />
+
+```java
+public PseudoDTM(String inputFile, String inputFileCode, int pDocumentNumber, int topicNumber,
+			double inputAlpha, double inputBeta, double inputLambada, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+
+The input file ('shortDocument.txt') contains many document (5 documents), like: <br />
+```java
+470 657
+2139 3204 3677
+109 111 448 2778 2980 3397 3405 3876
+117 4147
+66 375
+```
+The output contains three file <br />:
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190704084048257.png)
+
+The contents of 'PseudoDTM_topic_word_50.txt' like: <br /> 
+```
+Topic:1
+837 :0.04213507251351584
+447 :0.032695443233502104
+3217 :0.029262850768042567
+579 :0.026688406418947912
+407 :0.024972110186218144
+2567 :0.024113962069853258
+2954 :0.024113962069853258
+...
+
+Topic:2
+159 :0.05377295861916353
+172 :0.04270856384155786
+59 :0.03701830367021781
+850 :0.03670217810514336
+65 :0.033224796889324434
+412 :0.0316441690639522
+69 :0.03132804349887775
+587 :0.029747415673505515
+703 :0.028166787848133274
+802 :0.02627003445768659
+153 :0.02468940663231435
+146 :0.022792653241867668
+3683 :0.022160402111718772
+...
+```
+
+
 
 
 
