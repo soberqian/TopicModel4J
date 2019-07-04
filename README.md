@@ -850,7 +850,7 @@ public class DualSparseLDATest {
 
 }
 ```
-Where the constructor method HDP() is:<br />
+Where the constructor method DualSparseLDA() is:<br />
 ```java
 public DualSparseLDA(String inputFile, String inputFileCode, int topicNumber,
 			double inputS, double inputR, double inputX, double inputY, 
