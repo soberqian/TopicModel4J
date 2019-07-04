@@ -627,7 +627,7 @@ public class DMMTest {
 
 }
 ```
-Where the constructor method LinkLDA() is:<br />
+Where the constructor method DMM() is:<br />
 
 ```java
 public DMM(String inputFile, String inputFileCode, int clusterNumber,
@@ -714,4 +714,35 @@ The contents of 'DMM_theta_15.txt' like: <br />
 0.09762796504369538
 0.04769038701622972
 ```
+
+## DPMM
+Collapsed Gibbs Sampling for DPMM
+Reference:(1)Yin J, Wang J. A model-based approach for text clustering with outlier detection[C]//2016 IEEE 32nd International Conference on Data Engineering (ICDE). IEEE, 2016: 625-636.
+
+(2)https://github.com/junyachen/GSDPMM
+
+This algorithm is similar with DMM. When I implement this algorithm, I use same data structure between these two algorithm (DMM and DPMM).
+
+```java
+import com.topic.model.DPMM;
+
+public class DPMMTest {
+
+	public static void main(String[] args) {
+		DPMM dmm = new DPMM("data/shortdoc.txt", "gbk", 5, 0.1,
+				0.01, 1500, 50, "data/ldaoutput/");
+		dmm.MCMCSampling();
+
+	}
+
+}
+```
+Where the constructor method DPMM() is:<br />
+```java
+public DPMM(String inputFile, String inputFileCode, int initClusterNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+
+## HDP
 
