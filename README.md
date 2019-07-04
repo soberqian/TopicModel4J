@@ -607,5 +607,111 @@ The contents of 'doc_topic_LinkLDA_50.txt' like: <br />
 0.28383838383838383	0.00101010101010101	0.00101010101010101 ...
 ```
 
+## DMM
+Collapsed Gibbs Sampling for DMM
+Reference:(1)Yin J, Wang J. A dirichlet multinomial mixture model-based approach for short text clustering[C]//Proceedings of the 20th ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2014: 233-242.
 
+(2)Nguyen D Q. jLDADMM: A Java package for the LDA and DMM topic models[J]. arXiv preprint arXiv:1808.03835, 2018.
+
+```java
+import com.topic.model.DMM;
+
+public class DMMTest {
+
+	public static void main(String[] args) {
+		DMM dmm = new DMM("data/shortdoc.txt", "gbk", 15, 0.1,
+				0.01, 500, 50, "data/ldaoutput/");
+		dmm.MCMCSampling();
+
+	}
+
+}
+```
+Where the constructor method LinkLDA() is:<br />
+
+```java
+public DMM(String inputFile, String inputFileCode, int clusterNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+
+The example of the input file likes:<br />
+```java
+iphone crack iphone 
+adding support iphone announced 
+youtube video guy siri pretty love 
+rim made easy switch iphone yeah 
+realized ios 
+current blackberry user bit disappointed move android iphone 
+...
+```
+The output file contains:<br />
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190704110118259.png)
+
+The contents of 'DMM_cluster_word_15.txt' like: <br /> 
+```
+Topic:1
+science :0.050034954559073204
+windows :0.04004793768101468
+computer :0.04004793768101468
+research :0.04004793768101468
+android :0.030060920802956158
+search :0.030060920802956158
+add :0.030060920802956158
+start :0.030060920802956158
+shows :0.030060920802956158
+improvements :0.030060920802956158
+...
+
+Topic:2
+iphone :0.06536929406386731
+great :0.0523084960491086
+ios :0.04577809704172925
+loving :0.04577809704172925
+time :0.039247698034349895
+good :0.039247698034349895
+search :0.039247698034349895
+sleep :0.03271729902697055
+man :0.026186900019591196
+facebook :0.026186900019591196
+nice :0.026186900019591196
+world :0.026186900019591196
+helps :0.026186900019591196
+paying :0.019656501012211846
+...
+```
+The contents of 'DMM_doc_cluster15.txt' like: <br /> 
+```
+1
+11
+9
+6
+6
+6
+1
+6
+7
+8
+1
+0
+...
+```
+The contents of 'DMM_theta_15.txt' like: <br /> 
+```
+0.052684144818976285
+0.06766541822721599
+0.07515605493133583
+0.07016229712858926
+0.10262172284644196
+0.06267166042446942
+0.10761548064918852
+0.04769038701622972
+0.06267166042446942
+0.050187265917603
+0.037702871410736576
+0.0651685393258427
+0.05518102372034957
+0.09762796504369538
+0.04769038701622972
+```
 
