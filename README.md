@@ -359,6 +359,7 @@ public PseudoDTM(String inputFile, String inputFileCode, int pDocumentNumber, in
 			String outputFileDir)
 ```
 
+
 The input file ('shortDocument.txt') contains many document (5 documents), like: <br />
 ```java
 470 657
@@ -400,6 +401,103 @@ Topic:2
 ...
 ```
 
+##  Author-topic Model
+Collapsed Gibbs sampling for author-topic model
+
+Reference:Rosen-Zvi M, Griffiths T, Steyvers M, et al. The author-topic model for authors and documents[C]//Proceedings of the 20th conference on Uncertainty in artificial intelligence. AUAI Press, 2004: 487-494.
+```java
+import com.topic.model.AuthorTM;
+
+public class ATMTest {
+
+	public static void main(String args[]) throws Exception{
+		AuthorTM lda = new AuthorTM("/home/qianyang/dualsparse/rawdata_process_author", "gbk", 25, 0.1,
+				0.01, 500, 50, "/home/qianyang/dualsparse/output/");
+		lda.MCMCSampling();
+	}
+
+}
+```
+Where the constructor method AuthorTM() is:<br />
+
+```java
+public AuthorTM(String inputFile, String inputFileCode, int topicNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+The output result:<br />
+```java
+// output the result
+System.out.println("write topic word ..." );
+writeTopWordsWithProbability();
+System.out.println("write author topic ..." );
+writeAuthorTopic();
+System.out.println("write ranked topic author ..." );
+writeTopicAuthor();
+```
+The output file contains:<br />
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190704085409460.png)
+
+We run the code in Linux Server.
+
+The example (contains two documents) of the input file likes:<br />
+```java
+Volkswagen Golf--BMW	jhend925 correct gti heat seat include trim
+Kia Soul--Ford Escape--Toyota RAV4	car_man current lease number Soul Exclaim premium package market quote pathetic offer walk dealership contact EXACT vehicle
+```
+
+The contents of 'authorTM_topic_author_25.txt' like: <br /> 
+
+```
+Topic:1
+Lexus IS 200t :0.82801393728223
+GMC Acadia :0.7883767535070141
+Saturn L300 :0.775535590877678
+Lexus NX 300h :0.7683754512635379
+Porsche Cayenne :0.7153568853640953
+Audi R8 :0.610393466963623
+Oldsmobile Alero :0.5796109993293093
+...
+
+Topic:2
+BMW X6 :0.32407809110629066
+Lincoln Continental :0.255003599712023
+Audi A5 :0.2263959390862944
+Ford Edge :0.1896140350877193
+Cadillac ATS-V :0.1740510697032436
+Pontiac G5 :0.1566591422121896
+Lexus NX 300 :0.13647570703408266
+Volkswagen Tiguan :0.13225579761068165
+...
+```
+
+The contents of 'authorTM_topic_word25.txt' like: <br /> 
+
+```java
+Topic:1
+drive :0.08731467480511887
+awd :0.06541822490968394
+post :0.054768834886097705
+time :0.03145971080386051
+base :0.030427371975043478
+rate :0.029014697788241225
+high :0.027765024469146922
+door :0.02695002013060716
+show :0.024179005379571968
+...
+
+Topic:2
+person :0.028071566434497267
+miles/year :0.02691409539297589
+hood :0.01939053362308692
+article :0.015918120498522776
+max :0.014760649457001397
+console :0.013313810655099673
+massachusetts :0.013313810655099673
+rubber :0.013024442894719327
+section :0.010709500811676568
+...
+```
 
 
 
