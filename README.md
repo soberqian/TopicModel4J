@@ -235,6 +235,34 @@ texas :0.00874000130773087
 buy :0.006560449859418931
 ...
 ```
+## Partially Labeled Dirichlet Allocation
+Gibbs sampling for Partially Labeled Dirichlet Allocation
+
+Reference:Ramage D, Manning C D, Dumais S. Partially labeled topic models for interpretable text mining[C]//Proceedings of the 17th ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2011: 457-465.
+```java
+package example;
+
+import com.topic.model.PLDA;
+
+public class PLDATest {
+
+	public static void main(String[] args) {
+		PLDA plda = new PLDA("data/rawdata_process_author", "gbk", 3, 0.1,
+				0.01, 500, 50, "data/ldaoutput/");
+		plda.MCMCSampling();
+
+	}
+
+}
+```
+Where the constructor method PLDA() is:<br />
+```java
+public PLDA(String inputFile, String inputFileCode,int label_topicNumber,
+			double inputAlpha, double inputBeta, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+
+
 ## Sentence LDA
 We use Collapsed Gibbs sampling for implementing the  Sentence-LDA.<br /> 
 Reference: (1)Jo Y, Oh A H. Aspect and sentiment unification model for online review analysis[C]//Proceedings of the fourth ACM international conference on Web search and data mining. ACM, 2011: 815-824.<br /> 
