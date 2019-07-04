@@ -522,7 +522,7 @@ public class LinkLDATest {
 
 }
 ```
-Where the constructor method AuthorTM() is:<br />
+Where the constructor method LinkLDA() is:<br />
 
 ```java
 public LinkLDA(String inputFile, String inputFileCode, int topicNumber,
