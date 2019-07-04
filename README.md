@@ -499,7 +499,36 @@ section :0.010709500811676568
 ...
 ```
 
+## LinkLDA
 
+Collapsed Gibbs sampling in the generative model of Link LDA
+
+Reference:(1)Erosheva E, Fienberg S, Lafferty J. Mixed-membership models of scientific publications[J]. Proceedings of the National Academy of Sciences, 2004, 101(suppl 1): 5220-5227.
+
+(2)Su S, Wang Y, Zhang Z, et al. Identifying and tracking topic-level influencers in the microblog streams[J]. Machine Learning, 2018, 107(3): 551-578.
+
+(3)(Probabilistic inference formula):Ling G, Lyu M R, King I. Ratings meet reviews, a combined approach to recommend[C]//Proceedings of the 8th ACM Conference on Recommender systems. ACM, 2014: 105-112.
+
+```java
+import com.topic.model.LinkLDA;
+
+public class LinkLDATest {
+
+	public static void main(String args[]) throws Exception{
+		LinkLDA linklda = new LinkLDA("data/rawdata_process_link", "gbk", 50, 0.1,
+				0.01,0.01, 200, 50, "data/linkldaoutput/");
+		linklda.MCMCSampling();
+	}
+
+}
+```
+Where the constructor method AuthorTM() is:<br />
+
+```java
+public LinkLDA(String inputFile, String inputFileCode, int topicNumber,
+			double inputAlpha, double inputBeta,double inputGamma, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
 
 
 
