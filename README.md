@@ -721,7 +721,7 @@ Reference:(1)Yin J, Wang J. A model-based approach for text clustering with outl
 
 (2)https://github.com/junyachen/GSDPMM
 
-This algorithm is similar with DMM. When I implement this algorithm, I use same data structure between these two algorithm (DMM and DPMM).
+This algorithm is similar with DMM. When I implement this algorithm, I the use same data structure between these two algorithms (DMM and DPMM).
 
 ```java
 import com.topic.model.DPMM;
@@ -745,4 +745,64 @@ public DPMM(String inputFile, String inputFileCode, int initClusterNumber,
 ```
 
 ## HDP
+Sampling based on the Chinese restaurant franchise
+
+Reference:(1)Teh Y W, Jordan M I, Beal M J, et al. Sharing clusters among related groups: Hierarchical Dirichlet processes[C]//Advances in neural information processing systems. 2005: 1385-1392.
+
+(2)https://github.com/arnim/HDP
+
+```java
+import com.topic.model.HDP;
+
+public class HDPTest {
+
+	public static void main(String[] args) {
+		HDP hdp = new HDP("data/rawdata_process_lda", "gbk", 10, 1, 0.01,
+				0.1, 1000, 50, "data/ldaoutput/");
+		hdp.MCMCSampling();
+
+	}
+
+}
+```
+Where the constructor method HDP() is:<br />
+```java
+public HDP(String inputFile, String inputFileCode, int initTopicNumber,
+			double inputAlpha, double inputBeta, double inputGamma, int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+The output file contains:<br />
+![在这里插入图片描述](https://img-blog.csdnimg.cn/201907041126015.png)
+
+The contents of 'HDP_topic_word_36.txt' like: <br /> 
+```
+Topic:1
+method :0.030071773821525403
+model :0.01782642193628322
+function :0.012205604677483528
+equation :0.012125307288072103
+distribution :0.011643522951603558
+parameter :0.011201887309840727
+numerical :0.011121589920429302
+result :0.01072010297337218
+problem :0.010639805583960757
+present :0.009957277773963652
+propose :0.00975653430043509
+...
+
+Topic:2
+algorithm :0.06079583823439637
+problem :0.050096888430722096
+propose :0.025803978876496988
+optimization :0.023915928911142702
+solution :0.021209723960801567
+solve :0.016111989054345
+search :0.014790354078597003
+result :0.012461759121326719
+paper :0.012398824122481576
+method :0.011895344131720435
+time :0.010573709155972437
+show :0.010447839158282152
+...
+```
 
