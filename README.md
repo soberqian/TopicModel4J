@@ -834,3 +834,37 @@ show :0.010447839158282152
 ...
 ```
 
+##  Dual-Sparse Topic Model
+Collapsed Variational Bayesian Inference for Dual-Sparse Topic Model
+
+Reference:Lin T, Tian W, Mei Q, et al. The dual-sparse topic model: mining focused topics and focused terms in short text[C]//Proceedings of the 23rd international conference on World wide web. ACM, 2014: 539-550.
+```java
+import com.topic.model.DualSparseLDA;
+
+public class DualSparseLDATest {
+
+	public static void main(String[] args) {
+		DualSparseLDA slda = new DualSparseLDA("data/shortdoc.txt", "gbk", 10, 1.0, 1.0, 1.0, 1.0, 0.1, 1E-12, 0.1, 1E-12, 500, 60, "data/dualsparse/");
+		slda.CVBInference();
+	}
+
+}
+```
+Where the constructor method HDP() is:<br />
+```java
+public DualSparseLDA(String inputFile, String inputFileCode, int topicNumber,
+			double inputS, double inputR, double inputX, double inputY, 
+			double inputGamma, double inputGamma_bar,double inputPi, double inputPi_bar,
+			int inputIterations, int inTopWords,
+			String outputFileDir)
+```
+
+The output file contains:<br />
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190704161409153.png)
+
+
+
+
+
+
