@@ -1,6 +1,6 @@
 # Software Introduction
 This Java package corresponds to my research paper as follows:<br />
-**Yang Qian, Junming Yin, Yezheng Liu, Yuanchun Jiang. TopicModel4J: A Java Package for Topic Models, to be submitted.**<br />
+**Yang Qian,Yuanchun Jian,Yidong Chai,Yezheng Liu,Jianshan Sun. TopicModel4J: A Java Package for Topic Models, under review.**<br />
 <br />
 This package is about Topic Models for Natural Language Processing (NLP). And **it provides an easy-to-use interface for researchers and data analysts**.<br />
 
