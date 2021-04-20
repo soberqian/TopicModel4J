@@ -198,8 +198,8 @@ public class BTM
 			int[] document = docword[i];
 			int[][] bitermsDoc = generateBitermsForOneDoc(document, windowSize);
 			double pzb[] = new double[K];
-			double sum = 0.0;
 			for(int b = 0 ;b < bitermsDoc.length; b++){
+				double sum = 0.0;
 				for( int k=0; k < K; k++){
 					pzb[k] = theta[k] * phi[k][bitermsDoc[b][0]] * phi[k][bitermsDoc[b][1]];
 					sum += pzb[k];
